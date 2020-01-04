@@ -63,13 +63,15 @@ do
         '+')  echo "script press KPPLUS";;
         '=')  echo "script press EQUAL";;
         '-')  echo "script press MINUS";;
+        '_')  echo "script press SHIFT MINUS";;
         '/')  echo "script press SLASH";;
+        '\')  echo "script press BACKSLASH";;
         ';')  echo "script press SEMICOLON";;
-        '"')  echo "script press SHIFT APOSTROPHE";;
+        ':')  echo "script press SHIFT SEMICOLON";;
         "'")  echo "script press APOSTROPHE";;
+        '"')  echo "script press SHIFT APOSTROPHE";;
         '(')  echo "script press KPLEFTPARENTHESE";;
         ')')  echo "script press KPRIGHTPARENTHESE";;
-        '\')  echo "script press BACKSLASH";;
         '[')  echo "script press LEFTBRACE";;
         ']')  echo "script press RIGHTBRACE";;
         *)    echo "special character unaccounted for";;

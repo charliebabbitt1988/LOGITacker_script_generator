@@ -12,6 +12,7 @@ Only Linux is supported.
 
 - Known issues: 
     - some special characters might not be supported in the script yet
+    - there has to be more than 1 line in the text file; if there is only 1 line of text, then add a blank line underneath that line
 
 - TODO: 
     - implement more support for common special characters that are usually found in plaintext based payloads; usually powershell or batch files

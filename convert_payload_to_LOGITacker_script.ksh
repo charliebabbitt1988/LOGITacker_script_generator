@@ -60,12 +60,22 @@ do
       case $char in
         ' ')  echo "script press SPACE";;
         ',')  echo "script press COMMA";;
+        '<')  echo "script press LEFTMETA";;
+        '>')  echo "script press RIGHTMETA";;
+        '{')  echo "script press SHIFT LEFTBRACE";;
+        '}')  echo "script press SHIFT RIGHTBRACE";;
+        '@')  echo "script press SHIFT 2";;
+        '#')  echo "script press SHIFT 3";;
+        '$')  echo "script press SHIFT 4";;
+        '%')  echo "script press SHIFT 5";;
+        '&')  echo "script press SHIFT 7";;
         '+')  echo "script press KPPLUS";;
         '=')  echo "script press EQUAL";;
         '-')  echo "script press MINUS";;
         '_')  echo "script press SHIFT MINUS";;
         '/')  echo "script press SLASH";;
         '\')  echo "script press BACKSLASH";;
+        '|')  echo "script press SHIFT BACKSLASH";;
         ';')  echo "script press SEMICOLON";;
         ':')  echo "script press SHIFT SEMICOLON";;
         "'")  echo "script press APOSTROPHE";;

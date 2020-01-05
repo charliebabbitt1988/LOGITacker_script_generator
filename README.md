@@ -7,6 +7,8 @@ Only Linux is supported.
 
 # install needed packages
 - apt-get install ksh
+- apt-get install python3
+- pip3 install yoctopuce
 
 ## Usage: ./LOGITacker_script_generator.ksh payload.txt
 

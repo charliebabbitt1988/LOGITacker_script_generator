@@ -4,6 +4,9 @@
 # convert payload text to LOGITacker script input
 # beta version; a bit clunky, but it seems to work for most text based payloads
 
+# for longer or shorter lines of plaintext for the saved script, this can be adjusted
+max_string_length_for_plaintext=100
+
 usage() {
   echo ""
   echo "Usage: ${0} payload.txt"
@@ -49,7 +52,7 @@ reset_plaintext_string () {
 
 cat $1 | while read line
 do
-  echo $line | fold -w 1 | while read char
+  echo "${line}" | fold -w 1 | while read char
   do
     special_char_test=$(echo "$char" | grep -v "^[a-zA-Z0-9.]*$")
     if [[ ! -z $special_char_test ]];then
@@ -60,16 +63,19 @@ do
       case $char in
         ' ')  echo "script press SPACE";;
         ',')  echo "script press COMMA";;
-        '<')  echo "script press LEFTMETA";;
-        '>')  echo "script press RIGHTMETA";;
+        '<')  echo "script press SHIFT COMMA";;
+        '>')  echo "script press SHIFT DOT";;
         '{')  echo "script press SHIFT LEFTBRACE";;
         '}')  echo "script press SHIFT RIGHTBRACE";;
+        '!')  echo "script press SHIFT 1";;
         '@')  echo "script press SHIFT 2";;
         '#')  echo "script press SHIFT 3";;
         '$')  echo "script press SHIFT 4";;
         '%')  echo "script press SHIFT 5";;
+        '^')  echo "script press SHIFT 6";;
         '&')  echo "script press SHIFT 7";;
-        '+')  echo "script press KPPLUS";;
+        '*')  echo "script press SHIFT 8";;
+        '+')  echo "script press SHIFT EQUAL";;
         '=')  echo "script press EQUAL";;
         '-')  echo "script press MINUS";;
         '_')  echo "script press SHIFT MINUS";;
@@ -80,8 +86,8 @@ do
         ':')  echo "script press SHIFT SEMICOLON";;
         "'")  echo "script press APOSTROPHE";;
         '"')  echo "script press SHIFT APOSTROPHE";;
-        '(')  echo "script press KPLEFTPARENTHESE";;
-        ')')  echo "script press KPRIGHTPARENTHESE";;
+        '(')  echo "script press SHIFT 9";;
+        ')')  echo "script press SHIFT 0";;
         '[')  echo "script press LEFTBRACE";;
         ']')  echo "script press RIGHTBRACE";;
         *)    echo "special character unaccounted for";;
@@ -92,7 +98,7 @@ do
         let plaintext_char_counter=plaintext_char_counter+1
       fi
 
-      if (( $plaintext_char_counter < 100 ));then
+      if (( $plaintext_char_counter < $max_string_length_for_plaintext ));then
         string=$(echo "${string}${char}")
       else
         string=$(echo "${string}${char}")
@@ -103,6 +109,7 @@ do
       let plaintext_char_counter=plaintext_char_counter+1
     fi
   done
+  echo "script press ENTER"
 done
 
 # restore IFS value

@@ -32,3 +32,4 @@ This script will load a payload to the dongle as a saved script that can be exec
 
 - TODO: 
     - implement more support for common special characters that are usually found in plaintext based payloads; usually powershell or batch files
+    - Test other dongles.  Only the April Brother nRF52840 Dongle has been tested.

@@ -1,8 +1,11 @@
 #!/bin/ksh
 #set -x
 
+# v0.2
+
 # convert payload text to LOGITacker script input
 # beta version; a bit clunky, but it seems to work for most text based payloads
+# last line of payload.txt should always be an empty line
 
 # for longer or shorter lines of plaintext for the saved script, this can be adjusted
 max_string_length_for_plaintext=100
@@ -80,7 +83,8 @@ do
         '-')  echo "script press MINUS";;
         '_')  echo "script press SHIFT MINUS";;
         '/')  echo "script press SLASH";;
-        '\')  echo "script press BACKSLASH";;
+	# backslash won't end up in generated script due to ksh shell behavior
+        #*\*)  echo "script press BACKSLASH";;
         '|')  echo "script press SHIFT BACKSLASH";;
         ';')  echo "script press SEMICOLON";;
         ':')  echo "script press SHIFT SEMICOLON";;
@@ -109,13 +113,13 @@ do
       let plaintext_char_counter=plaintext_char_counter+1
     fi
   done
+  if [[ ! -z $string ]];then
+    echo "script string $string"
+    reset_plaintext_string
+  fi
   echo "script press ENTER"
 done
 
 # restore IFS value
 IFS=$IFS_BAK
-
-if [[ ! -z $string ]];then
-  echo "script string $string"
-fi
 

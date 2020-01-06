@@ -1,2 +1,3 @@
-powershell. +-=;/'"() eol
 linetesttoseeifthisscriptcanhandlelinesthatareoveronehundredcharactersletsseeifthisworkswellweshallsee
+powershell. +-=;/'"() eol !@#$%^&*()//
+

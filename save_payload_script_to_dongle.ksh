@@ -5,8 +5,11 @@
 
 usage () {
   echo ""
-  echo "Usage: ${0} payload.txt <script_name_for_saving_to_dongle>"
+  echo "Usage: ${0} payload.txt script_name_to_run_to_save_to_dongle.ksh script_name_for_dongle"
   echo ""
+  echo "Argument 1: the text file for your payload"
+  echo "Argument 2: the script that will be created; when run this will save the script to the dongle."
+  echo "Argument 3: the name of the script that will be saved to the dongle with \"script store\""
   exit 1
 }
 
@@ -21,8 +24,15 @@ if [[ -z $2 ]]; then
   usage
 fi
 
-script_to_save=$2
+if [[ -z $3 ]]; then
+  echo "No script name for the dongle was specified."
+  usage
+fi
 
+script_to_create=$2
+script_to_save_to_dongle=$3
+
+(
 echo "#!/bin/ksh"
 echo "#set -x"
 echo ""
@@ -78,11 +88,18 @@ done
 
 echo "screen -x LOGITacker_screen -p 0 -X stuff \"script press RETURN\"\`echo -ne '\\015'\`"
 echo "python3 -c \"import time; time.sleep(0.05)\""
-#echo "screen -x LOGITacker_screen -p 0 -X stuff \"inject target \${1}\"\`echo -ne '\\015'\`"
-#echo "python3 -c \"import time; time.sleep(0.05)\""
-#echo "screen -x LOGITacker_screen -p 0 -X stuff \"inject execute\"\`echo -ne '\\015'\`"
+echo "screen -x LOGITacker_screen -p 0 -X stuff \"script store \"${script_to_save_to_dongle}\"\"\`echo -ne '\\015'\`"
 echo "get_pid_of_LOGITacker_screen=\$(screen -list | grep 'LOGITacker_screen' | awk -F'.' '{print \$1}' | awk '{\$1=\$1;print}')"
 echo "kill \$get_pid_of_LOGITacker_screen"
-echo "echo \"Payload executed.\""
+echo "echo \"Script ${script_to_save_to_dongle} saved.\""
+echo "echo \"Log on to the dongle with \\\"screen /dev/ttyACM0\\\" and verify the script with these commands:\""
+echo "echo \"script list\""
+echo "echo \"script load ${script_to_save_to_dongle}\""
+echo "echo \"script show\""
+
 echo "fi"
 echo ""
+) | tee ${script_to_create}
+chmod 700 ${script_to_create}
+echo "The ${script_to_create} script was created."
+echo "You will need to run the ${script_to_create} in order to save the ${script_to_save_to_dongle} script to the dongle."

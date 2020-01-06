@@ -13,15 +13,18 @@ Only Linux is supported.
 ## Usage: convert_payload_to_LOGITacker_script.ksh payload.txt
 This script converts your payload.txt to ducky style script that can be saved.
 
+
 ## Usage: generate_powershell_for_target_injection.ksh payload.txt > payload.ksh
 ##        chmod 700 payload.ksh;./payload.ksh
 This script is mostly for testing payloads.  After payload.ksh is created, you can execute payload.ksh to test its functionality.  This is not recommended for field use because of the long execution time.  It will load the script to the dongle memory before it executes, which can be slow.
+
 
 ## Usage: save_payload_script_to_dongle.ksh payload.txt script_name_to_run_to_save_to_dongle.ksh script_name_for_dongle
 ## Argument 1: the text file for your payload
 ## Argument 2: the script that will be created; when run this will save the script to the dongle.
 ## Argument 3: the name of the script that will be saved to the dongle with "script store"
 This script will load a payload to the dongle as a saved script that can be executed later against a target.
+
 
 - Known issues: 
     - some special characters might not be supported in the script yet; backslash is not supported due to ksh shell behavior

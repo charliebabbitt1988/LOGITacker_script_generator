@@ -14,7 +14,7 @@ Only Linux is supported.
 This script converts your payload.txt to ducky style script that can be saved.
 
 
-### Usage: generate_powershell_for_target_injection.ksh payload.txt > payload.ksh
+### Usage: generate_and_execute_powershell_for_target_injection.ksh payload.txt > payload.ksh
 ###        chmod 700 payload.ksh;./payload.ksh
 This script is mostly for testing payloads.  After payload.ksh is created, you can execute payload.ksh to test its functionality.  This is not recommended for field use because of the long execution time.  It will load the script to the dongle memory before it executes, which can be slow.
 

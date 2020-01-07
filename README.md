@@ -1,5 +1,5 @@
 # LOGITacker_script_generator
-beta version 0.2 - 05JAN2020
+beta version 0.3 - 07JAN2020
 
 This is for generating ducky style script for the LOGITacker.
 Specify your text based payload as the first argument to the script.
@@ -7,8 +7,8 @@ Only Linux is supported.
 
 # install needed packages
 - apt-get install ksh
+- apt-get install screen
 - apt-get install python3
-- pip3 install yoctopuce
 
 ### Usage: convert_payload_to_LOGITacker_script.ksh payload.txt
 This script converts your payload.txt to ducky style script that can be saved.

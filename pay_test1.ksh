@@ -237,17 +237,7 @@ screen -x LOGITacker_screen -p 0 -X stuff "script press SHIFT 0"`echo -ne '\015'
 python3 -c "import time; time.sleep(0.05)"
 screen -x LOGITacker_screen -p 0 -X stuff "script press ENTER"`echo -ne '\015'`
 python3 -c "import time; time.sleep(0.05)"
-screen -x LOGITacker_screen -p 0 -X stuff "script string powershell"`echo -ne '\015'`
-python3 -c "import time; time.sleep(0.05)"
-screen -x LOGITacker_screen -p 0 -X stuff "script press SPACE"`echo -ne '\015'`
-python3 -c "import time; time.sleep(0.05)"
-screen -x LOGITacker_screen -p 0 -X stuff "script press MINUS"`echo -ne '\015'`
-python3 -c "import time; time.sleep(0.05)"
-screen -x LOGITacker_screen -p 0 -X stuff "script string Command"`echo -ne '\015'`
-python3 -c "import time; time.sleep(0.05)"
-screen -x LOGITacker_screen -p 0 -X stuff "script press SPACE"`echo -ne '\015'`
-python3 -c "import time; time.sleep(0.05)"
-screen -x LOGITacker_screen -p 0 -X stuff "script press SHIFT APOSTROPHE"`echo -ne '\015'`
+screen -x LOGITacker_screen -p 0 -X stuff "script delay 1000"`echo -ne '\015'`
 python3 -c "import time; time.sleep(0.05)"
 screen -x LOGITacker_screen -p 0 -X stuff "script press SHIFT 7"`echo -ne '\015'`
 python3 -c "import time; time.sleep(0.05)"
@@ -332,12 +322,6 @@ python3 -c "import time; time.sleep(0.05)"
 screen -x LOGITacker_screen -p 0 -X stuff "script press MINUS"`echo -ne '\015'`
 python3 -c "import time; time.sleep(0.05)"
 screen -x LOGITacker_screen -p 0 -X stuff "script string NoNewWindow"`echo -ne '\015'`
-python3 -c "import time; time.sleep(0.05)"
-screen -x LOGITacker_screen -p 0 -X stuff "script press SHIFT APOSTROPHE"`echo -ne '\015'`
-python3 -c "import time; time.sleep(0.05)"
-screen -x LOGITacker_screen -p 0 -X stuff "script press SPACE"`echo -ne '\015'`
-python3 -c "import time; time.sleep(0.05)"
-screen -x LOGITacker_screen -p 0 -X stuff "script press SHIFT RIGHTBRACE"`echo -ne '\015'`
 python3 -c "import time; time.sleep(0.05)"
 screen -x LOGITacker_screen -p 0 -X stuff "script press ENTER"`echo -ne '\015'`
 python3 -c "import time; time.sleep(0.05)"

